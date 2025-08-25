@@ -3,238 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bikemates – Student Bike Sharing & Rentals</title>
+  <title>Bikemates</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
     }
-
     body {
-      background: #fff;
-      color: #333;
-      line-height: 1.6;
+      background: #f4f4f4;
+      overflow-x: hidden;
     }
 
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      z-index: 1000;
-    }
-
-    nav img {
-      height: 50px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #4CAF50;
-    }
-
-    /* Hero Section */
-    .hero {
-      background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    /* --- Welcome Screen --- */
+    .welcome {
       height: 100vh;
+      width: 100%;
+      background: linear-gradient(to right, #000, #333);
+      color: white;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      text-align: center;
-      color: white;
+      align-items: center;
       position: relative;
     }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 20px;
-    }
-
-    .hero-content h1 {
+    .welcome h1 {
       font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
       margin-bottom: 30px;
+      z-index: 2;
+    }
+    .bike {
+      position: absolute;
+      bottom: 50px;
+      left: -200px;
+      width: 200px;
+      animation: ride 5s linear forwards;
+    }
+    @keyframes ride {
+      from { left: -200px; }
+      to { left: 110%; }
     }
 
-    .btn {
-      padding: 12px 30px;
-      background: #4CAF50;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: background 0.3s;
+    /* --- Main Content --- */
+    .main {
+      display: none;
+      padding: 60px 20px;
     }
-
-    .btn:hover {
-      background: #45a049;
-    }
-
-    /* Sections */
-    section {
-      padding: 80px 60px;
-    }
-
-    section h2 {
+    header {
       text-align: center;
       margin-bottom: 40px;
-      font-size: 2.2rem;
-      color: #111;
     }
-
-    .grid {
+    header img {
+      height: 70px;
+      margin-bottom: 15px;
+    }
+    header h2 {
+      font-size: 2.2rem;
+      color: #222;
+    }
+    .options {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
+      margin-top: 40px;
     }
-
     .card {
-      background: #f9f9f9;
+      background: white;
       padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-
     .card:hover {
       transform: translateY(-5px);
     }
-
     .card h3 {
       margin-bottom: 15px;
       color: #4CAF50;
     }
-
-    footer {
-      background: #111;
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: #4CAF50;
       color: white;
-      text-align: center;
-      padding: 30px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #45a049;
     }
 
-    @media (max-width: 768px) {
-      nav {
-        padding: 15px 20px;
-      }
-      .hero-content h1 {
-        font-size: 2rem;
-      }
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <img src="logo.png" alt="Bikemates Logo">
-    <ul>
-      <li><a href="#problem">Problem</a></li>
-      <li><a href="#solution">Solution</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#model">Business Model</a></li>
-      <li><a href="#benefits">Benefits</a></li>
-    </ul>
-  </nav>
+  <!-- Welcome Animation -->
+  <div class="welcome" id="welcomeScreen">
+    <h1>Welcome to Bikemates 🚴‍♂️</h1>
+    <img src="logo.png" alt="Bikemates Logo" style="height:80px; margin-bottom:20px;">
+    <img src="images/bike.png" alt="Bike" class="bike">
+  </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Bikemates 🚴‍♂️</h1>
-      <p>Earn from your bike · Rent bikes affordably · Share rides easily</p>
-      <a href="#features" class="btn">Explore Features</a>
+  <!-- Main Website -->
+  <div class="main" id="mainContent">
+    <header>
+      <img src="logo.png" alt="Bikemates Logo">
+      <h2>Ride · Share · Earn · Save</h2>
+      <p>Book bikes, share rides, and save money with Bikemates!</p>
+    </header>
+
+    <div class="options">
+      <div class="card">
+        <h3>📖 Book a Bike</h3>
+        <p>Rent bikes for a few hours or the whole day at affordable prices.</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="card">
+        <h3>🤝 Share a Ride</h3>
+        <p>Going to college? Share your ride with friends and split fuel costs.</p>
+        <a href="#" class="btn">Share Ride</a>
+      </div>
+
+      <div class="card">
+        <h3>⏳ Select Duration</h3>
+        <p>Choose flexible time slots – 1 hr, 2 hrs, half-day, or full day.</p>
+        <a href="#" class="btn">Choose Time</a>
+      </div>
     </div>
-  </section>
 
-  <!-- Problem -->
-  <section id="problem">
-    <h2>💡 The Problem We Are Solving</h2>
-    <div class="grid">
-      <div class="card"><h3>High Travel Costs</h3><p>Students spend too much on autos, fuel, or buses.</p></div>
-      <div class="card"><h3>Idle Bikes</h3><p>Bikes stay unused while their owners are in classes.</p></div>
-      <div class="card"><h3>Solo Travel</h3><p>Many students travel alone instead of sharing rides.</p></div>
-    </div>
-  </section>
+    <footer>
+      <p>© 2025 Bikemates · Save Money · Save Time · Earn More</p>
+    </footer>
+  </div>
 
-  <!-- Solution -->
-  <section id="solution">
-    <h2>🎉 Bikemates Solution</h2>
-    <div class="grid">
-      <div class="card"><h3>Bike Rentals</h3><p>Students rent bikes for 1–2 hours easily.</p></div>
-      <div class="card"><h3>Ride-Sharing</h3><p>Daily commuters split fuel and save costs.</p></div>
-      <div class="card"><h3>Digital Payments</h3><p>UPI-based safe, cashless transactions.</p></div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features">
-    <h2>📲 Main Features</h2>
-    <div class="grid">
-      <div class="card"><h3>✅ Flexible Rentals</h3><p>Even short-time bookings.</p></div>
-      <div class="card"><h3>✅ Live GPS & Chat</h3><p>Easy coordination.</p></div>
-      <div class="card"><h3>✅ Student Verification</h3><p>Safer community.</p></div>
-      <div class="card"><h3>✅ Ratings & Reviews</h3><p>Trustworthy system.</p></div>
-    </div>
-  </section>
-
-  <!-- Business Model -->
-  <section id="model">
-    <h2>💰 Business Model</h2>
-    <div class="grid">
-      <div class="card"><h3>Commission</h3><p>10–15% per ride or rental.</p></div>
-      <div class="card"><h3>Subscriptions</h3><p>Monthly passes for frequent users.</p></div>
-      <div class="card"><h3>Advertising</h3><p>Local shops & coaching centers.</p></div>
-      <div class="card"><h3>Premium</h3><p>Priority bookings, premium bikes.</p></div>
-    </div>
-  </section>
-
-  <!-- Benefits -->
-  <section id="benefits">
-    <h2>🏆 Advantages</h2>
-    <div class="grid">
-      <div class="card"><h3>Bike Owners</h3><p>Earn from idle bikes.</p></div>
-      <div class="card"><h3>Students</h3><p>Affordable rides & rentals.</p></div>
-      <div class="card"><h3>Commuters</h3><p>Split fuel cost, make friends.</p></div>
-      <div class="card"><h3>Parents</h3><p>Safe, verified student-only app.</p></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>🌱 Bikemates · Save Money · Save Time · Earn More · © 2025</p>
-  </footer>
+  <!-- JS to switch screen -->
+  <script>
+    setTimeout(() => {
+      document.getElementById("welcomeScreen").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }, 5000); // Show main site after 5 sec
+  </script>
 
 </body>
 </html>
