@@ -3,7 +3,7 @@ body {
   background:#f8f9fa; 
 }
 
-.logo { height:45px; margin-right:5px; }
+.logo { height:32px; margin-right:8px; }
 footer .footer-logo { height:32px; }
 
 .hero {
@@ -20,7 +20,7 @@ footer .footer-logo { height:32px; }
 }
 
 .hero h1 { font-size:3rem; font-weight:800; }
-.hero h2 { font-size:2rem; margin-top:15px; }
+.hero h2 { font-size:2rem; margin-top:12px; }
 
 /* Updated Get Started button */
 .hero .btn.get-started {
