@@ -5,179 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BikeMates</title>
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      scroll-behavior: smooth;
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: Arial, sans-serif; line-height: 1.6; background: #f9f9f9; color: #333;}
+    nav {
+      background: #111; color: #fff; padding: 15px 50px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
     }
-    section {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 40px;
+    nav h1 {font-size: 24px; color: #ffb400;}
+    nav ul {list-style: none; display: flex;}
+    nav ul li {margin-left: 20px;}
+    nav ul li a {color: #fff; text-decoration: none; font-weight: bold;}
+    section {padding: 80px 50px; text-align: center;}
+    .hero {
+      height: 100vh;
+      background: url('boy-giving-bike.jpg') no-repeat center center/cover;
+      color: white; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-shadow: 2px 2px 5px #000;
     }
-
-    /* Welcome Section */
-    .welcome {
-      background: url("boy-bike-bg.png") no-repeat center center/cover;
-      color: white;
-      position: relative;
-    }
+    .hero h2 {font-size: 48px; margin-bottom: 20px;}
+    .hero p {font-size: 20px;}
     .bike {
-      position: absolute;
-      bottom: 50px;
-      left: -200px;
-      animation: ride 6s linear forwards;
+      width: 120px; height: 60px;
+      background: url('logo.png') no-repeat center/contain;
+      position: relative; animation: moveBike 6s linear infinite;
+      margin-top: 20px;
     }
-    @keyframes ride {
-      from { left: -200px; }
-      to { left: 100%; }
+    @keyframes moveBike {
+      from {left: -200px;} to {left: 100%;}
     }
-    .welcome h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+    .content {max-width: 900px; margin: auto;}
+    .content h2 {font-size: 36px; margin-bottom: 20px; color: #ff6600;}
+    .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
+    .card {
+      background: #fff; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
-    /* Book/Share Section */
-    .book {
-      background: #f0f6ff;
+    .card h3 {margin-bottom: 10px; color: #ff6600;}
+    .download {
+      background: #222; color: #fff; padding: 60px 20px;
     }
-    .book h2 { font-size: 2rem; margin-bottom: 20px; }
-    .book button {
-      margin: 10px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: 0.3s;
+    .download button {
+      padding: 12px 25px; font-size: 18px; border: none;
+      background: #ff6600; color: #fff; border-radius: 8px; cursor: pointer;
     }
-    .book button:hover { background: #0056b3; }
-
-    /* How it Works Section */
-    .works {
-      background: #ffffff;
+    footer {
+      background: #111; color: #fff; padding: 20px; text-align: center;
     }
-    .works h2 {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-    }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    .step-card {
-      background: #f9f9f9;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .step-card:hover { transform: translateY(-6px); }
-    .step-card img { width: 60px; margin-bottom: 10px; }
-    .step-card h3 { color: #007bff; margin-bottom: 8px; }
-
-    /* Login Section */
-    .login {
-      background: #f0f0f0;
-    }
-    .login-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-      max-width: 400px;
-      width: 100%;
-    }
-    .login-box h2 {
-      margin-bottom: 20px;
-    }
-    .login-box input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 12px;
-      background: #007bff;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .login-box button:hover { background: #0056b3; }
   </style>
 </head>
 <body>
 
-  <!-- 1. Welcome Section -->
-  <section class="welcome" id="welcome">
-    <h1>Welcome to BikeMates</h1>
-    <p>Smart bike sharing for students</p>
-    <img src="bike.png" alt="Bike" class="bike">
-    <a href="#book"><button>Next</button></a>
+  <!-- NAVBAR -->
+  <nav>
+    <h1>BikeMates</h1>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#bookshare">Book/Share</a></li>
+      <li><a href="#works">How It Works</a></li>
+      <li><a href="#safe">Stay Safe</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#">Login / Signup</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <h2>Welcome to BikeMates</h2>
+    <p>A smart bike-sharing platform built by students, for students.</p>
+    <div class="bike"></div>
   </section>
 
-  <!-- 2. Book/Share Section -->
-  <section class="book" id="book">
-    <h2>Book or Share a Bike</h2>
-    <p>Choose your option and duration</p>
-    <button>Book a Bike</button>
-    <button>Share Your Bike</button>
-    <a href="#works"><button>Next</button></a>
-  </section>
-
-  <!-- 3. How it Works Section -->
-  <section class="works" id="works">
-    <h2>How BikeMates Works</h2>
-    <div class="steps">
-      <div class="step-card">
-        <img src="share.png" alt="Share">
-        <h3>Share Your Bike</h3>
-        <p>List your bike to help others commute easily.</p>
-      </div>
-      <div class="step-card">
-        <img src="rent.png" alt="Rent">
-        <h3>Rent a Bike</h3>
-        <p>Find affordable bikes instantly near you.</p>
-      </div>
-      <div class="step-card">
-        <img src="earn.png" alt="Earn">
-        <h3>Earn Money</h3>
-        <p>Earn pocket money by sharing your bike.</p>
-      </div>
-      <div class="step-card">
-        <img src="safety.png" alt="Safety">
-        <h3>Safety First</h3>
-        <p>All rides are verified & secure.</p>
+  <!-- BOOK / SHARE / EARN -->
+  <section id="bookshare">
+    <div class="content">
+      <h2>Book • Share • Earn</h2>
+      <div class="grid">
+        <div class="card"><h3>📖 Book</h3><p>Rent a bike easily for classes, trips, or daily errands.</p></div>
+        <div class="card"><h3>🤝 Share</h3><p>Share your bike with friends & split fuel costs.</p></div>
+        <div class="card"><h3>💸 Earn</h3><p>List your idle bike & earn extra money every day.</p></div>
       </div>
     </div>
-    <br>
-    <a href="#login"><button>Next</button></a>
   </section>
 
-  <!-- 4. Login Section -->
-  <section class="login" id="login">
-    <div class="login-box">
-      <h2>Login to BikeMates</h2>
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
-      <button>Login</button>
-      <p>Don't have an account? <a href="#">Sign Up</a></p>
+  <!-- HOW IT WORKS -->
+  <section id="works" style="background:#f1f1f1;">
+    <div class="content">
+      <h2>How BikeMates Works</h2>
+      <div class="grid">
+        <div class="card"><h3>🚲 Bike Owner</h3><p>List your bike & set availability timings.</p></div>
+        <div class="card"><h3>👨‍🎓 Renter</h3><p>Book verified bikes instantly at low cost.</p></div>
+        <div class="card"><h3>🚗 Ride-Sharer</h3><p>Post your daily route & save on travel expenses.</p></div>
+        <div class="card"><h3>🧑‍🤝 Passenger</h3><p>Book a safe ride with verified students.</p></div>
+      </div>
     </div>
   </section>
+
+  <!-- STAY SAFE -->
+  <section id="safe">
+    <div class="content">
+      <h2>Stay Safe, Ride Safe</h2>
+      <p>✅ Verified student profiles <br> ✅ GPS Tracking <br> ✅ Cashless secure payments</p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD APP -->
+  <section class="download" id="download">
+    <h2>Download the BikeMates App</h2>
+    <p>Available soon on Play Store & App Store</p>
+    <button>📲 Get App</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 BikeMates | Built by Students for Students 🚴</p>
+  </footer>
 
 </body>
 </html>
