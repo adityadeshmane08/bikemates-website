@@ -4,157 +4,462 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bikemates</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    body {
       font-family: Arial, sans-serif;
     }
-    body {
-      background: #f4f4f4;
-      overflow-x: hidden;
-    }
-
-    /* --- Welcome Screen --- */
-    .welcome {
-      height: 100vh;
-      width: 100%;
-      background: linear-gradient(to right, #000, #333);
+    .hero {
+      background: url('images/boy-bike-share.jpg') no-repeat center center/cover;
       color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
+      padding: 120px 20px;
       position: relative;
     }
-    .welcome h1 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      z-index: 2;
-    }
-    .bike {
+    .hero::after {
+      content: "";
       position: absolute;
-      bottom: 50px;
-      left: -200px;
-      width: 200px;
-      animation: ride 5s linear forwards;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
     }
-    @keyframes ride {
-      from { left: -200px; }
-      to { left: 110%; }
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
-
-    /* --- Main Content --- */
-    .main {
-      display: none;
-      padding: 60px 20px;
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
     }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
+    .hero p {
+      font-size: 1.2rem;
+      margin: 15px 0 30px;
     }
-    header img {
-      height: 70px;
-      margin-bottom: 15px;
+    .btn-green {
+      background-color: #28a745;
+      color: white;
     }
-    header h2 {
-      font-size: 2.2rem;
-      color: #222;
+    .btn-orange {
+      background-color: #fd7e14;
+      color: white;
     }
-    .options {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+    .form-section {
       margin-top: 40px;
     }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card h3 {
-      margin-bottom: 15px;
-      color: #4CAF50;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 25px;
-      background: #4CAF50;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #45a049;
-    }
-
     footer {
-      margin-top: 60px;
-      text-align: center;
-      padding: 20px;
+      margin-top: 50px;
       background: #111;
       color: white;
+      text-align: center;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Welcome Animation -->
-  <div class="welcome" id="welcomeScreen">
-    <h1>Welcome to Bikemates 🚴‍♂️</h1>
-    <img src="logo.png" alt="Bikemates Logo" style="height:80px; margin-bottom:20px;">
-    <img src="images/bike.png" alt="Bike" class="bike">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4">
+  <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="logo.png" alt="Bikemates Logo" width="40" class="me-2">
+    <span class="fw-bold">Bikemates</span>
+  </a>
+  <div class="ms-auto">
+    <button class="btn btn-outline-dark me-2">Login</button>
+    <button class="btn btn-primary">Sign Up</button>
   </div>
+</nav>
 
-  <!-- Main Website -->
-  <div class="main" id="mainContent">
-    <header>
-      <img src="logo.png" alt="Bikemates Logo">
-      <h2>Ride · Share · Earn · Save</h2>
-      <p>Book bikes, share rides, and save money with Bikemates!</p>
-    </header>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Student-to-Student <span style="color:limegreen;">Bike Sharing</span></h1>
+    <p>Earn from your bike when not using it. Rent bikes affordably. Share rides and split costs.</p>
+    <a href="#rent" class="btn btn-green btn-lg me-3">🚲 Rent a Bike</a>
+    <a href="#share" class="btn btn-orange btn-lg">🚕 Share a Ride</a>
+  </div>
+</section>
 
-    <div class="options">
-      <div class="card">
-        <h3>📖 Book a Bike</h3>
-        <p>Rent bikes for a few hours or the whole day at affordable prices.</p>
-        <a href="#" class="btn">Book Now</a>
+<!-- Tabs Section -->
+<div class="container form-section">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="rent-tab" data-bs-toggle="tab" data-bs-target="#rent" type="button" role="tab">🚲 Rent Bikes</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="share-tab" data-bs-toggle="tab" data-bs-target="#share" type="button" role="tab">🤝 Share Rides</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <!-- Rent Form -->
+    <div class="tab-pane fade show active p-4 border border-top-0" id="rent" role="tabpanel">
+      <div class="mb-3">
+        <label class="form-label">Pickup Location</label>
+        <input type="text" class="form-control" placeholder="Near college gate...">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date & Time</label>
+        <input type="datetime-local" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Duration</label>
+        <select class="form-select">
+          <option>1 hour</option>
+          <option>2 hours</option>
+          <option>Half Day</option>
+          <option>Full Day</option>
+        </select>
+      </div>
+      <button class="btn btn-success w-100">Confirm Booking</button>
+    </div>
+    <!-- Share Form -->
+    <div class="tab-pane fade p-4 border border-top-0" id="share" role="tabpanel">
+      <div class="mb-3">
+        <label class="form-label">From</label>
+        <input type="text" class="form-control" placeholder="Your location">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">To</label>
+        <input type="text" class="form-control" placeholder="Destination">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date & Time</label>
+        <input type="datetime-local" class="form-control">
+      </div>
+      <button class="btn btn-warning w-100">Offer Ride</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Bikemates. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose Bikemates</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-gray-100 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <div class="flex items-center space-x-2">
+      <i class="lucide lucide-bike text-blue-500 text-2xl"></i>
+      <h1 class="text-2xl font-bold text-blue-600">Bikemates</h1>
+    </div>
+    <div class="space-x-4">
+      <a href="how.html" class="px-4 py-2 text-gray-700 hover:text-blue-600">Back</a>
+      <a href="benefits.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Next</a>
+    </div>
+  </nav>
+
+  <!-- Why Choose Us Section -->
+  <section class="text-center py-16 px-6">
+    <h2 class="text-4xl font-bold text-gray-900">Why Choose Bikemates?</h2>
+    <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+      We’re built by students, for students — making daily travel easier, safer, and more affordable.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 max-w-6xl mx-auto">
+      
+      <!-- Affordable -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+        <div class="flex justify-center">
+          <i class="lucide lucide-wallet text-green-600 text-5xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mt-6">Affordable</h3>
+        <p class="mt-3 text-gray-600">
+          Ride at just a fraction of regular travel costs. Perfect for student budgets.
+        </p>
       </div>
 
-      <div class="card">
-        <h3>🤝 Share a Ride</h3>
-        <p>Going to college? Share your ride with friends and split fuel costs.</p>
-        <a href="#" class="btn">Share Ride</a>
+      <!-- Safe & Secure -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+        <div class="flex justify-center">
+          <i class="lucide lucide-shield-check text-blue-600 text-5xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mt-6">Safe & Secure</h3>
+        <p class="mt-3 text-gray-600">
+          Verified riders, real-time tracking, and secure payments for your peace of mind.
+        </p>
       </div>
 
-      <div class="card">
-        <h3>⏳ Select Duration</h3>
-        <p>Choose flexible time slots – 1 hr, 2 hrs, half-day, or full day.</p>
-        <a href="#" class="btn">Choose Time</a>
+      <!-- Student-Friendly -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+        <div class="flex justify-center">
+          <i class="lucide lucide-users text-yellow-500 text-5xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mt-6">Student-Friendly</h3>
+        <p class="mt-3 text-gray-600">
+          Built exclusively for students, with features designed around your campus life.
+        </p>
+      </div>
+
+      <!-- Eco-Friendly -->
+      <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition">
+        <div class="flex justify-center">
+          <i class="lucide lucide-leaf text-green-500 text-5xl"></i>
+        </div>
+        <h3 class="text-xl font-semibold mt-6">Eco-Friendly</h3>
+        <p class="mt-3 text-gray-600">
+          Promote sustainability by sharing rides and reducing carbon footprint.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bikemates - Stay Safe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+    header .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #007bff;
+      display: flex;
+      align-items: center;
+    }
+    header .logo span {
+      margin-left: 8px;
+    }
+    header .buttons button {
+      margin-left: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .login { background: #fff; border: 1px solid #007bff; color: #007bff; }
+    .signup { background: #007bff; color: #fff; }
+
+    /* Stay Safe */
+    .safe {
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .safe h2 { font-size: 22px; margin-bottom: 10px; }
+    .safe p { color: #555; font-size: 16px; }
+
+    /* Ready to Save */
+    .cta {
+      background: linear-gradient(to right, #007bff, #0056d6);
+      text-align: center;
+      padding: 60px 20px;
+      color: #fff;
+    }
+    .cta h2 { font-size: 26px; margin-bottom: 15px; }
+    .cta p { font-size: 16px; margin-bottom: 25px; }
+    .cta-buttons button {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .download { background: #fff; color: #007bff; font-weight: bold; }
+    .explore { background: #ffcc00; color: #000; font-weight: bold; }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .footer-top { margin-bottom: 20px; }
+    .footer-top h3 {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+    }
+    .footer-top h3 span { margin-left: 8px; }
+    .footer-top p { margin: 5px 0; color: #ccc; }
+    .social-icons a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #ccc;
+      font-size: 18px;
+    }
+    .footer-links {
+      margin-top: 15px;
+    }
+    .footer-links h4 { font-size: 16px; margin-bottom: 8px; }
+    .footer-links p { margin: 3px 0; color: #bbb; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🚲 <span>Bikemates</span></div>
+    <div class="buttons">
+      <button class="login">Login</button>
+      <button class="signup">Sign Up</button>
+    </div>
+  </header>
+
+  <!-- Stay Safe Section -->
+  <section class="safe">
+    <h2>Stay Safe</h2>
+    <p>Student verification, ratings system, and in-app chat for secure transactions</p>
+  </section>
+
+  <!-- Ready to Save Section -->
+  <section class="cta">
+    <h2>Ready to Start Saving & Earning?</h2>
+    <p>Join thousands of students already using Bikemates to make their college life more affordable and convenient</p>
+    <div class="cta-buttons">
+      <button class="download">Download App</button>
+      <button class="explore">Explore Bikes 🚲</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <h3>🚲 <span>Bikemates</span></h3>
+      <p>Student-to-student bike rental and ride sharing platform</p>
+      <div class="social-icons">
+        <a href="#">📸</a>
+        <a href="#">🐦</a>
+        <a href="#">💼</a>
       </div>
     </div>
+    <div class="footer-links">
+      <h4>For Students</h4>
+      <p>Rent Bikes</p>
+      <p>Share Rides</p>
+      <p>Earn Money</p>
+    </div>
+  </footer>
 
-    <footer>
-      <p>© 2025 Bikemates · Save Money · Save Time · Earn More</p>
-    </footer>
-  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How BikeMates Works</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+    }
 
-  <!-- JS to switch screen -->
-  <script>
-    setTimeout(() => {
-      document.getElementById("welcomeScreen").style.display = "none";
-      document.getElementById("mainContent").style.display = "block";
-    }, 5000); // Show main site after 5 sec
-  </script>
+    .works-section {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .works-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .step-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .step-card img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .step-card h3 {
+      font-size: 1.3rem;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="works-section">
+    <h2>How BikeMates Works</h2>
+    <div class="steps">
+      
+      <div class="step-card">
+        <img src="share.png" alt="Share Bike">
+        <h3>Share Your Bike</h3>
+        <p>List your bike on BikeMates and help other students commute easily.</p>
+      </div>
+      
+      <div class="step-card">
+        <img src="rent.png" alt="Rent Bike">
+        <h3>Rent a Bike</h3>
+        <p>Find affordable bikes around your campus and rent them instantly.</p>
+      </div>
+      
+      <div class="step-card">
+        <img src="earn.png" alt="Earn Money">
+        <h3>Earn Money</h3>
+        <p>Students who share their bikes earn extra pocket money every ride.</p>
+      </div>
+      
+      <div class="step-card">
+        <img src="safety.png" alt="Safety First">
+        <h3>Safety First</h3>
+        <p>We ensure safe rides with verified students and secure transactions.</p>
+      </div>
+
+    </div>
+  </section>
 
 </body>
 </html>
