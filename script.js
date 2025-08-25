@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded",function(){
 
 // Dynamic bikes list
 const demoBikes = [
-  {brand:'Honda Activa', location:'Symbiosis', price:'₹25/hr', img:'assets/b1.jpg', rating:4.8},
-  {brand:'TVS Jupiter', location:'MIT WPU', price:'₹22/hr', img:'assets/b2.jpg', rating:4.5},
-  {brand:'Yamaha FZ', location:'COEP', price:'₹40/hr', img:'assets/b3.jpg', rating:4.7}
+  {brand:'Honda Activa', location:'Symbiosis', price:'₹99/3hr', img:'assets/b1.jpg', rating:4.8},
+  {brand:'TVS Jupiter', location:'MIT WPU', price:'₹99/3hr', img:'assets/b2.jpg', rating:4.5},
+  {brand:'Yamaha FZ', location:'COEP', price:'₹139/3hr', img:'assets/b3.jpg', rating:4.7}
 ];
 const bikesList = document.getElementById('bikes-list');
 if (bikesList) {
