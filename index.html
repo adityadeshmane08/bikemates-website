@@ -3,52 +3,238 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BikeMates</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <title>Bikemates – Student Bike Sharing & Rentals</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      z-index: 1000;
+    }
+
+    nav img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #4CAF50;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('images/hero-bg.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #45a049;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 60px;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.2rem;
+      color: #111;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #4CAF50;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white font-sans">
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <img src="logo.png" alt="Bikemates Logo">
+    <ul>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#model">Business Model</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+    </ul>
+  </nav>
 
   <!-- Hero Section -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-    
-    <!-- Logo -->
-    <img src="logo.png" alt="BikeMates Logo" class="w-32 md:w-40 mb-6 animate-pulse drop-shadow-2xl">
-
-    <!-- Heading -->
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-bounce">
-      🚴‍♂️ Welcome to <span class="text-yellow-300">BikeMates</span>
-    </h1>
-    
-    <!-- Intro Text -->
-    <p class="max-w-2xl text-lg md:text-xl leading-relaxed mb-8">
-      We are <strong>Yashraj and Aditya</strong>, proud co-founders of <strong>BikeMates</strong> — the future of student commuting. 
-      Built <em>by students, for students</em>, BikeMates is more than an app — it’s a movement to make every ride 
-      <span class="text-yellow-300">affordable, safe, and empowering</span>.
-    </p>
-
-    <!-- Lottie Animation -->
-    <lottie-player 
-      src="https://assets3.lottiefiles.com/packages/lf20_x62chJ.json"  
-      background="transparent"  
-      speed="1"  
-      style="width: 300px; height: 300px;"  
-      loop  
-      autoplay>
-    </lottie-player>
-
-    <!-- Extra Text -->
-    <p class="max-w-2xl text-lg md:text-xl leading-relaxed mt-8">
-      Together, we’re building a <strong>smarter, greener, and more connected campus life</strong>.  
-      Every ride saves money, every rental adds convenience, and every trip strengthens bonds. ✨
-    </p>
-
-    <!-- Call to Action -->
-    <div class="mt-10 space-x-4">
-      <a href="#download" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold text-lg shadow-lg hover:bg-yellow-300 transition">Download App</a>
-      <a href="#learn" class="border-2 border-white px-6 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-indigo-700 transition">Learn More</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bikemates 🚴‍♂️</h1>
+      <p>Earn from your bike · Rent bikes affordably · Share rides easily</p>
+      <a href="#features" class="btn">Explore Features</a>
     </div>
   </section>
+
+  <!-- Problem -->
+  <section id="problem">
+    <h2>💡 The Problem We Are Solving</h2>
+    <div class="grid">
+      <div class="card"><h3>High Travel Costs</h3><p>Students spend too much on autos, fuel, or buses.</p></div>
+      <div class="card"><h3>Idle Bikes</h3><p>Bikes stay unused while their owners are in classes.</p></div>
+      <div class="card"><h3>Solo Travel</h3><p>Many students travel alone instead of sharing rides.</p></div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution">
+    <h2>🎉 Bikemates Solution</h2>
+    <div class="grid">
+      <div class="card"><h3>Bike Rentals</h3><p>Students rent bikes for 1–2 hours easily.</p></div>
+      <div class="card"><h3>Ride-Sharing</h3><p>Daily commuters split fuel and save costs.</p></div>
+      <div class="card"><h3>Digital Payments</h3><p>UPI-based safe, cashless transactions.</p></div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <h2>📲 Main Features</h2>
+    <div class="grid">
+      <div class="card"><h3>✅ Flexible Rentals</h3><p>Even short-time bookings.</p></div>
+      <div class="card"><h3>✅ Live GPS & Chat</h3><p>Easy coordination.</p></div>
+      <div class="card"><h3>✅ Student Verification</h3><p>Safer community.</p></div>
+      <div class="card"><h3>✅ Ratings & Reviews</h3><p>Trustworthy system.</p></div>
+    </div>
+  </section>
+
+  <!-- Business Model -->
+  <section id="model">
+    <h2>💰 Business Model</h2>
+    <div class="grid">
+      <div class="card"><h3>Commission</h3><p>10–15% per ride or rental.</p></div>
+      <div class="card"><h3>Subscriptions</h3><p>Monthly passes for frequent users.</p></div>
+      <div class="card"><h3>Advertising</h3><p>Local shops & coaching centers.</p></div>
+      <div class="card"><h3>Premium</h3><p>Priority bookings, premium bikes.</p></div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits">
+    <h2>🏆 Advantages</h2>
+    <div class="grid">
+      <div class="card"><h3>Bike Owners</h3><p>Earn from idle bikes.</p></div>
+      <div class="card"><h3>Students</h3><p>Affordable rides & rentals.</p></div>
+      <div class="card"><h3>Commuters</h3><p>Split fuel cost, make friends.</p></div>
+      <div class="card"><h3>Parents</h3><p>Safe, verified student-only app.</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>🌱 Bikemates · Save Money · Save Time · Earn More · © 2025</p>
+  </footer>
 
 </body>
 </html>
